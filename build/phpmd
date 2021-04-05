@@ -1,0 +1,17 @@
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:39	The method dispatch() has a Cyclomatic Complexity of 26. The configured cyclomatic complexity threshold is 10.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:39	The method dispatch() has an NPath complexity of 5849. The configured NPath complexity threshold is 200.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:53	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:54	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:54	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:70	Avoid variables with short names like $me. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:70	Avoid variables with short names like $me. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:110	The method dispatch uses an else expression. Else clauses are basically not necessary and you can simplify the code by not using them.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:121	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:125	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:129	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:134	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:135	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/TwentyOne/TwentyOne.php:78	The method finishGame() has a Cyclomatic Complexity of 12. The configured cyclomatic complexity threshold is 10.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Util/Util.php:46	Missing class import via use statement (line '46', column '37').
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Util/Util.php:91	Avoid using static access to class 'pereriksson\Util\Util' in method 'url'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Util/Util.php:112	Avoid using static access to class 'pereriksson\Util\Util' in method 'getBaseUrl'.
