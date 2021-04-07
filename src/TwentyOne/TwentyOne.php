@@ -15,10 +15,12 @@ class TwentyOne
     private $rounds = [];
     private $currentRound;
     private $diceHand;
+    private $scoreCard;
 
     public function __construct($numberOfDices, $numberOfFaces)
     {
         $this->diceHand = new DiceHand($numberOfDices, $numberOfFaces);
+        $this->scoreCard = new ScoreCard();
     }
 
     public function addPlayer($name)
@@ -32,7 +34,7 @@ class TwentyOne
         $this->status = PLAYING;
 
         foreach ($this->players as $player) {
-            $player->setScore(0);
+            $this->scoreCard->resetScore();
             $player->setStatus(PLAYING);
         }
     }
@@ -53,12 +55,14 @@ class TwentyOne
         }
 
         $this->players[$player]->throwDices();
+        $currentScore = $this->scoreCard->getScore($player);
+        $this->scoreCard->setScore($player, $currentScore + $this->diceHand->getDiceSum());
 
-        if ($this->players[$player]->getScore() == 21) {
+        if ($this->scoreCard->getScore($player) == 21) {
             $this->players[$player]->setStatus(STOPPED);
         }
 
-        if ($this->players[$player]->getScore() > 21) {
+        if ($this->scoreCard->getScore($player) > 21) {
             $this->players[$player]->setStatus(STOPPED);
         }
 
@@ -75,41 +79,54 @@ class TwentyOne
         $this->finishGame();
     }
 
-    public function finishGame()
+    private function playerWithTwentyOneExist(): bool
     {
-        $finishGame = false;
-
-        // Check if someone has 21
-        foreach ($this->players as $player) {
-            if ($player->getScore() === 21) {
+        foreach ($this->players as $index => $player) {
+            if ($this->scoreCard->getScore($index) === 21) {
                 $this->currentRound->setWinner($player);
-                $finishGame = true;
+                true;
             }
         }
 
-        // Check if all have played
+        return false;
+    }
+
+    private function getNumberOfSettledPlayers(): int
+    {
         $settledPlayers = 0;
+
         foreach ($this->players as $player) {
             if ($player->getStatus() !== 0) {
                 $settledPlayers += 1;
             }
         }
 
+        return $settledPlayers;
+    }
+
+    public function finishGame()
+    {
+        // Check if someone has 21
+        $finishGame = $this->playerWithTwentyOneExist();
+
+        // Check if all have played
+        $settledPlayers = $this->getNumberOfSettledPlayers();
+
         // All have played, determine the winner
         if ($settledPlayers === count($this->players)) {
             $winner = null;
             $winnerScore = null;
-            foreach ($this->players as $player) {
+            foreach ($this->players as $index => $player) {
                 // Only take stopped players into consideration (no losers)
-                if ($player->getScore() <= 21) {
+                if ($this->scoreCard->getScore($index) <= 21) {
                     if (!$winner) {
                         $winner = $player;
-                        $winnerScore = 21 - $player->getScore();
+                        $winnerScore = 21 - $this->scoreCard->getScore($index);
                     }
 
-                    if ($winner && 21 - $player->getScore() < $winnerScore) {
+                    if ($winner && 21 - $this->scoreCard->getScore($index) < $winnerScore) {
                         $winner = $player;
-                        $winnerScore = 21 - $player->getScore();
+                        $winnerScore = 21 - $this->scoreCard->getScore($index);
                     }
                 }
             }
@@ -150,6 +167,11 @@ class TwentyOne
         return $this->players;
     }
 
+    public function getPlayerScore(int $player): int
+    {
+        return $this->scoreCard->getScore($player);
+    }
+
     public function resetScore()
     {
         $this->newRound();
@@ -157,7 +179,7 @@ class TwentyOne
 
         foreach ($this->players as $player) {
             $player->setStatus(PLAYING);
-            $player->resetScore();
+            $this->diceHand->resetHand();
         }
     }
 }

@@ -8,7 +8,6 @@ const PLAYER_PLAYING = 0;
 
 class Player
 {
-    private $score = 0;
     private $diceHand;
     private $name;
     private $status = PLAYER_PLAYING;
@@ -27,28 +26,17 @@ class Player
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
     public function throwDices()
     {
         $this->diceHand->throwDices();
-        $this->score += $this->diceHand->getDiceSum();
-    }
-
-    public function getScore()
-    {
-        return $this->score;
-    }
-
-    /**
-     * @param int $score
-     */
-    public function setScore(int $score): void
-    {
-        $this->score = $score;
-    }
-
-    public function resetScore()
-    {
-        $this->score = 0;
     }
 
     /**

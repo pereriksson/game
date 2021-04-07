@@ -1,17 +1,52 @@
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:39	The method dispatch() has a Cyclomatic Complexity of 26. The configured cyclomatic complexity threshold is 10.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:39	The method dispatch() has an NPath complexity of 5849. The configured NPath complexity threshold is 200.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:53	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:54	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:54	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:70	Avoid variables with short names like $me. Configured minimum length is 3.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:70	Avoid variables with short names like $me. Configured minimum length is 3.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:110	The method dispatch uses an else expression. Else clauses are basically not necessary and you can simplify the code by not using them.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:121	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:125	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:129	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:134	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Router/Router.php:135	Avoid using static access to class '\pereriksson\Util\Util' in method 'dispatch'.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/TwentyOne/TwentyOne.php:78	The method finishGame() has a Cyclomatic Complexity of 12. The configured cyclomatic complexity threshold is 10.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Util/Util.php:46	Missing class import via use statement (line '46', column '37').
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Util/Util.php:91	Avoid using static access to class 'pereriksson\Util\Util' in method 'url'.
-/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Util/Util.php:112	Avoid using static access to class 'pereriksson\Util\Util' in method 'getBaseUrl'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:57	Avoid variables with short names like $me. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:57	Avoid variables with short names like $me. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:57	Avoid unused local variables such as '$me'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:58	Avoid unused local variables such as '$computer'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:118	Avoid unused local variables such as '$psr17Factory'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:121	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:125	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:125	Missing class import via use statement (line '125', column '43').
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:131	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:132	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:133	Avoid variables with short names like $me. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:133	Avoid variables with short names like $me. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/TwentyOne.php:134	Avoid unused local variables such as '$computer'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:34	Avoid using undefined variables such as '$data' which will lead to PHP notices.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:36	Avoid using undefined variables such as '$data' which will lead to PHP notices.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:55	Avoid using static access to class '\pereriksson\Session\Session' in method 'index'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:56	Avoid using static access to class '\pereriksson\Session\Session' in method 'index'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:57	Avoid using undefined variables such as '$data' which will lead to PHP notices.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:61	Avoid using undefined variables such as '$data' which will lead to PHP notices.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:64	Avoid using undefined variables such as '$data' which will lead to PHP notices.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:71	Avoid using undefined variables such as '$data' which will lead to PHP notices.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:72	Avoid using undefined variables such as '$data' which will lead to PHP notices.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:75	Avoid using undefined variables such as '$data' which will lead to PHP notices.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:91	The method action() has a Cyclomatic Complexity of 26. The configured cyclomatic complexity threshold is 10.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:91	The method action() has an NPath complexity of 4812. The configured NPath complexity threshold is 200.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:91	The method action() has 106 lines of code. Current threshold is set to 100. Avoid really long methods.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:94	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:98	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:98	Missing class import via use statement (line '98', column '39').
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:103	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:106	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:107	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:131	Avoid variables with short names like $id. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:144	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:146	Avoid variables with short names like $a. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:146	Avoid variables with short names like $n. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:146	Avoid variables with short names like $a. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:146	Avoid variables with short names like $n. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:150	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:157	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:164	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:171	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:178	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:185	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Controllers/Yatzy.php:186	Avoid using static access to class '\pereriksson\Session\Session' in method 'action'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Dice/Dice.php:9	Avoid variables with short names like $id. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Dice/DiceHand.php:16	Avoid variables with short names like $id. Configured minimum length is 3.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Session/Session.php:9	Avoid using static access to class 'pereriksson\Session\Session' in method 'startUniqueSession'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Session/Session.php:43	Avoid using static access to class 'pereriksson\Session\Session' in method 'get'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Session/Session.php:57	Avoid using static access to class 'pereriksson\Session\Session' in method 'destroy'.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/TwentyOne/TwentyOne.php:82	The method finishGame() has a Cyclomatic Complexity of 12. The configured cyclomatic complexity threshold is 10.
+/Users/per/Dropbox/Study/BTH/dbwebb-kurser/mvc/me/game/src/Yatzy/ScoreCard.php:8	The class ScoreCard has 17 fields. Consider redesigning ScoreCard to keep the number of fields under 15.

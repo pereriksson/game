@@ -13,7 +13,7 @@ class Util
      *
      * @return string with the route path requested.
      */
-    public static function getRoutePath(): string
+    public function getRoutePath(): string
     {
         $offset = strlen(dirname($_SERVER["SCRIPT_NAME"]));
         $path = substr($_SERVER["REQUEST_URI"], $offset);
@@ -25,12 +25,14 @@ class Util
     /**
      * Use Twig to render a view and return its rendered content.
      *
-     * @param string $template to use when rendering the view.
-     * @param array $data send to as variables to the view.
-     *
-     * @return string with the route path requested.
+     * @param string $template to use when rendering the view
+     * @param array $data send to as variables to the view
+     * @return string with the route path requested
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public static function renderTwigView(string $template, array $data = []): string
+    public function renderTwigView(string $template, array $data = []): string
     {
         static $loader = null;
         static $twig = null;
@@ -58,7 +60,7 @@ class Util
      *
      * @return void
      */
-    public static function sendResponse(string $body, int $status = 200): void
+    public function sendResponse(string $body, int $status = 200): void
     {
         http_response_code($status);
         echo $body;
@@ -72,7 +74,7 @@ class Util
      *
      * @return void
      */
-    public static function redirectTo(string $url): void
+    public function redirectTo(string $url): void
     {
         http_response_code(200);
         header("Location: $url");
@@ -87,9 +89,9 @@ class Util
      *
      * @return string with the route path requested.
      */
-    public static function url(string $path): string
+    public function url(string $path): string
     {
-        return Util::getBaseUrl() . $path;
+        return $this->getBaseUrl() . $path;
     }
 
 
@@ -98,7 +100,7 @@ class Util
      *
      * @return string as the base url.
      */
-    public static function getBaseUrl()
+    public function getBaseUrl()
     {
         static $baseUrl = null;
 
@@ -110,7 +112,7 @@ class Util
         $path = rtrim(dirname($scriptName), "/");
 
         // Prepare to create baseUrl by using currentUrl
-        $parts = parse_url(Util::getCurrentUrl());
+        $parts = parse_url($this->getCurrentUrl());
 
         // Build the base url from its parts
         $siteUrl = "{$parts["scheme"]}://{$parts["host"]}"
@@ -128,7 +130,7 @@ class Util
      *
      * @return string as current url.
      */
-    public static function getCurrentUrl(): string
+    public function getCurrentUrl(): string
     {
         // Silenced by Per as key doesn't exist
         //$scheme = $_SERVER["REQUEST_SCHEME"];
@@ -157,7 +159,7 @@ class Util
      *
      * @return void
      */
-    public static function destroySession(): void
+    public function destroySession(): void
     {
         $_SESSION = [];
 

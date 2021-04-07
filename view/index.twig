@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<twig>
 <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
@@ -11,13 +11,7 @@
 <body>
 
 <header>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-        <ul class="navbar-nav">
-            {% for item in navItems %}
-            <li><a class="nav-link" href="{{item.url}}">{{item.label}}</a></li>
-            {% endfor %}
-        </ul>
-    </nav>
+    {% include 'components/menu.twig' %}
 </header>
 <main>
     <div class="container">
@@ -29,5 +23,6 @@
         <p>Game. Source code available at: <a target="_blank" href="https://github.com/pereriksson/game">Github</a></p>
     </div>
 </footer>
+<script src="js/main.js"></script>
 </body>
-</html>
+</twig>

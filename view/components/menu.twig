@@ -1,0 +1,7 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <ul class="navbar-nav">
+        {% for item in navItems %}
+        <li><a class="nav-link" href="{{item.url}}">{{item.label}}</a></li>
+        {% endfor %}
+    </ul>
+</nav>

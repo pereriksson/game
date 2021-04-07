@@ -13,6 +13,24 @@ class DiceHand
         }
     }
 
+    public function keepDice(string $id)
+    {
+        foreach ($this->dices as $dice) {
+            if ($dice->getId() === $id) {
+                $dice->setKept(true);
+                break;
+            }
+        }
+    }
+
+    public function resetHand()
+    {
+        foreach ($this->dices as $dice) {
+            $dice->resetValue();
+            $dice->setKept(false);
+        }
+    }
+
     public function throwDices()
     {
         foreach ($this->dices as $dice) {
@@ -20,12 +38,20 @@ class DiceHand
         }
     }
 
+    /**
+     * @return array
+     */
+    public function getDices(): array
+    {
+        return $this->dices;
+    }
+
     public function getDiceValues()
     {
         $diceValues = [];
 
         foreach ($this->dices as $dice) {
-            $diceValues[] = $dice->getValue();
+            $diceValues[$dice->getId()] = $dice->getValue();
         }
 
         return $diceValues;
@@ -40,10 +66,5 @@ class DiceHand
         }
 
         return $diceSum;
-    }
-
-    public function addDice(Dice $dice)
-    {
-        $this->dices[] = $dice;
     }
 }
