@@ -7,7 +7,7 @@
 declare(strict_types=1);
 
 use Laminas\HttpHandlerRunner\Emitter\SapiEmitter as Emitter;
-use pereriksson\Controllers\Error;
+use pereriksson\Controllers\ErrorController;
 use pereriksson\Util\Util;
 use FastRoute\RouteCollector;
 use pereriksson\Session\Session;
@@ -43,22 +43,22 @@ $path   = $util->getRoutePath();
 // Load the routes from the configuration file
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $router) {
     $router->addGroup("/", function (RouteCollector $router) {
-        $router->addRoute("GET", "", ["\pereriksson\Controllers\Home", "index"]);
+        $router->addRoute("GET", "", ["\pereriksson\Controllers\HomeController", "index"]);
     });
 
     $router->addGroup("/session", function (RouteCollector $router) {
-        $router->addRoute("GET", "", ["\pereriksson\Controllers\Session", "index"]);
-        $router->addRoute("POST", "", ["\pereriksson\Controllers\Session", "destroy"]);
+        $router->addRoute("GET", "", ["\pereriksson\Controllers\SessionController", "index"]);
+        $router->addRoute("POST", "", ["\pereriksson\Controllers\SessionController", "destroy"]);
     });
 
     $router->addGroup("/twentyone", function (RouteCollector $router) {
-        $router->addRoute("GET", "", ["\pereriksson\Controllers\TwentyOne", "index"]);
-        $router->addRoute("POST", "", ["\pereriksson\Controllers\TwentyOne", "action"]);
+        $router->addRoute("GET", "", ["\pereriksson\Controllers\TwentyOneController", "index"]);
+        $router->addRoute("POST", "", ["\pereriksson\Controllers\TwentyOneController", "action"]);
     });
 
     $router->addGroup("/yatzy", function (RouteCollector $router) {
-        $router->addRoute("GET", "", ["\pereriksson\Controllers\Yatzy", "index"]);
-        $router->addRoute("POST", "", ["\pereriksson\Controllers\Yatzy", "action"]);
+        $router->addRoute("GET", "", ["\pereriksson\Controllers\YatzyController", "index"]);
+        $router->addRoute("POST", "", ["\pereriksson\Controllers\YatzyController", "action"]);
     });
 });
 
@@ -68,12 +68,12 @@ $response = null;
 $routeInfo = $dispatcher->dispatch($method, $path);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        $response = (new Error())->do404();
+        $response = (new ErrorController())->do404();
         break;
 
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
-        $response = (new Error())->do405($allowedMethods);
+        $response = (new ErrorController())->do405($allowedMethods);
         break;
 
     case FastRoute\Dispatcher::FOUND:

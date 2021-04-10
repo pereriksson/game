@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace pereriksson\Controllers;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
-use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use pereriksson\Util\Util;
+use pereriksson\Session\Session;
 
 /**
- * Controller for the session routes.
+ * Controller for the index route.
  */
-class Session
+class HomeController
 {
     private $util;
     private $session;
 
-    public function __construct(Util $util, \pereriksson\Session\Session $session)
+    public function __construct(Util $util, Session $session)
     {
         $this->util = $util;
         $this->session = $session;
@@ -28,9 +28,8 @@ class Session
         $psr17Factory = new Psr17Factory();
 
         $data = [
-            "title" => "Session",
-            "session" => $_SESSION,
-            "component" => "components/session.twig"
+            "title" => "Home",
+            "component" => "components/home.twig"
         ];
 
         $data["navItems"] = [
@@ -57,15 +56,5 @@ class Session
         return $psr17Factory
             ->createResponse(200)
             ->withBody($psr17Factory->createStream($body));
-    }
-
-
-    public function destroy(): ResponseInterface
-    {
-        $this->util->destroySession();
-
-        return (new Response())
-            ->withStatus(301)
-            ->withHeader("Location", $this->util->url("/session"));
     }
 }

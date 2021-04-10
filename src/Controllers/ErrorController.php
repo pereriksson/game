@@ -12,7 +12,7 @@ use pereriksson\Session\Session;
 /**
  * Controller for error routes.
  */
-class Error
+class ErrorController
 {
     private $util;
     private $session;

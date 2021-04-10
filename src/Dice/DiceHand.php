@@ -13,10 +13,10 @@ class DiceHand
         }
     }
 
-    public function keepDice(string $id)
+    public function keepDice(string $uniqid)
     {
         foreach ($this->dices as $dice) {
-            if ($dice->getId() === $id) {
+            if ($dice->getId() === $uniqid) {
                 $dice->setKept(true);
                 break;
             }

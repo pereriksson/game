@@ -9,6 +9,7 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use pereriksson\Util\Util;
 use pereriksson\Session\Session;
+use pereriksson\TwentyOne\TwentyOne;
 
 const PLAYING = 0;
 const FINISHED = 1;
@@ -18,7 +19,7 @@ const LOST = 2;
 /**
  * Controller for the index route.
  */
-class TwentyOne
+class TwentyOneController
 {
     private $util;
     private $session;
@@ -120,7 +121,7 @@ class TwentyOne
         }
 
         if ($this->isPostAction("start")) {
-            $this->session->set("twentyone", new \pereriksson\TwentyOne\TwentyOne($_POST["number_of_dices"], 6));
+            $this->session->set("twentyone", new TwentyOne($_POST["number_of_dices"], 6));
             $this->session->get("twentyone")->addPlayer("Jag");
             $this->session->get("twentyone")->addPlayer("Dator");
             $this->session->get("twentyone")->newRound();

@@ -6,17 +6,17 @@ class Dice
 {
     private $numberOfFaces;
     private $value;
-    private $id;
+    private $uniqid;
     private $kept = false;
 
     public function __construct($numberOfFaces)
     {
         $this->numberOfFaces = $numberOfFaces;
-        $this->id = uniqid();
+        $this->uniqid = uniqid();
     }
 
     /**
-     * @param mixed $kept
+     * @param bool $kept
      */
     public function setKept(bool $kept): void
     {
@@ -36,7 +36,7 @@ class Dice
      */
     public function getId(): string
     {
-        return $this->id;
+        return $this->uniqid;
     }
 
     public function throw()

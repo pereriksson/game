@@ -4,14 +4,14 @@ namespace pereriksson\TwentyOne;
 
 use pereriksson\Dice\DiceHand;
 
-const PLAYING = 0;
-const FINISHED = 1;
-const STOPPED = 3;
-
 class TwentyOne
 {
+    const PLAYING = 0;
+    const FINISHED = 1;
+    const STOPPED = 3;
+
     private $players;
-    private $status = PLAYING;
+    private $status = self::PLAYING;
     private $rounds = [];
     private $currentRound;
     private $diceHand;
@@ -31,11 +31,11 @@ class TwentyOne
     public function newRound()
     {
         $this->currentRound = new Round();
-        $this->status = PLAYING;
+        $this->status = self::PLAYING;
 
         foreach ($this->players as $player) {
             $this->scoreCard->resetScore();
-            $player->setStatus(PLAYING);
+            $player->setStatus(self::PLAYING);
         }
     }
 
@@ -46,11 +46,11 @@ class TwentyOne
         }
 
         // TODO: Move playing status to the Round class?
-        if ($this->status !== PLAYING) {
+        if ($this->status !== self::PLAYING) {
             return false;
         }
 
-        if ($this->players[$player]->getStatus() !== PLAYING) {
+        if ($this->players[$player]->getStatus() !== self::PLAYING) {
             return false;
         }
 
@@ -59,11 +59,11 @@ class TwentyOne
         $this->scoreCard->setScore($player, $currentScore + $this->diceHand->getDiceSum());
 
         if ($this->scoreCard->getScore($player) == 21) {
-            $this->players[$player]->setStatus(STOPPED);
+            $this->players[$player]->setStatus(self::STOPPED);
         }
 
         if ($this->scoreCard->getScore($player) > 21) {
-            $this->players[$player]->setStatus(STOPPED);
+            $this->players[$player]->setStatus(self::STOPPED);
         }
 
         $this->finishGame();
@@ -71,11 +71,11 @@ class TwentyOne
 
     public function setPlayedAsStopped($player)
     {
-        if ($this->players[$player]->getStatus() !== PLAYING) {
+        if ($this->players[$player]->getStatus() !== self::PLAYING) {
             return false;
         }
 
-        $this->players[$player]->setStatus(STOPPED);
+        $this->players[$player]->setStatus(self::STOPPED);
         $this->finishGame();
     }
 
@@ -84,7 +84,7 @@ class TwentyOne
         foreach ($this->players as $index => $player) {
             if ($this->scoreCard->getScore($index) === 21) {
                 $this->currentRound->setWinner($player);
-                true;
+                return true;
             }
         }
 
@@ -136,7 +136,7 @@ class TwentyOne
         }
 
         if ($finishGame) {
-            $this->status = FINISHED;
+            $this->status = self::FINISHED;
             $this->rounds[] = $this->currentRound;
         }
     }
@@ -178,7 +178,7 @@ class TwentyOne
         $this->rounds = [];
 
         foreach ($this->players as $player) {
-            $player->setStatus(PLAYING);
+            $player->setStatus(self::PLAYING);
             $this->diceHand->resetHand();
         }
     }

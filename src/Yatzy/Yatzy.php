@@ -6,15 +6,14 @@ use pereriksson\Dice\DiceHand;
 use pereriksson\TwentyOne\Player;
 use pereriksson\TwentyOne\Round;
 
-const PLAYING = 0;
-const FINISHED = 1;
-const STOPPED = 3;
-
 class Yatzy
 {
+    const PLAYING = 0;
+    const FINISHED = 1;
+    const STOPPED = 3;
 
     private $players;
-    private $status = PLAYING;
+    private $status = self::PLAYING;
     private $rounds = [];
     private $currentRound;
     private $diceHand;
@@ -47,10 +46,10 @@ class Yatzy
     public function newRound()
     {
         $this->currentRound = new Round();
-        $this->status = PLAYING;
+        $this->status = self::PLAYING;
 
         foreach ($this->players as $player) {
-            $player->setStatus(PLAYING);
+            $player->setStatus(self::PLAYING);
         }
     }
 
@@ -81,11 +80,11 @@ class Yatzy
         }
 
         // TODO: Move playing status to the Round class?
-        if ($this->status !== PLAYING) {
+        if ($this->status !== self::PLAYING) {
             return false;
         }
 
-        if ($this->players[$player]->getStatus() !== PLAYING) {
+        if ($this->players[$player]->getStatus() !== self::PLAYING) {
             return false;
         }
 
@@ -127,7 +126,7 @@ class Yatzy
         $this->scoreCards = [];
 
         foreach ($this->players as $player) {
-            $player->setStatus(PLAYING);
+            $player->setStatus(self::PLAYING);
 
             $scoreCard = new ScoreCard($player);
             $this->scoreCards[] = $scoreCard;

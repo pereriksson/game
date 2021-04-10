@@ -5,6 +5,7 @@ namespace pereriksson\Util;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
+use pereriksson\Filters\ScoreCardFilter;
 
 class Util
 {
@@ -47,6 +48,7 @@ class Util
             ]);
 
             $twig->addExtension(new DebugExtension());
+            $twig->addExtension(new ScoreCardFilter());
         }
 
         return $twig->render($template, $data);

@@ -2,39 +2,26 @@
 
 namespace pereriksson\Yatzy;
 
+use pereriksson\Player\Player;
+
 /**
  * A score card for a player.
  */
 class ScoreCard
 {
     private $player;
-    private $ones;
-    private $twos;
-    private $threes;
-    private $fours;
-    private $fives;
-    private $sixes;
-    // TODO: Fool phpmd
-    //private $onePair;
-    //private $twoPairs;
-    private $threeNumbers;
-    private $fourNumbers;
-    private $smallLadder;
-    private $bigLadder;
-    private $house;
-    private $chance;
-    private $yatzy;
-    private $bonus;
+    private $score;
 
     public function __construct($player)
     {
         $this->player = $player;
+        $this->score = [];
     }
 
     /**
-     * @return mixed
+     * @return object The player of the scorecard.
      */
-    public function getPlayer()
+    public function getPlayer(): object
     {
         return $this->player;
     }
@@ -45,12 +32,12 @@ class ScoreCard
      */
     public function getSum(): int
     {
-        return $this->ones +
-            $this->twos +
-            $this->threes +
-            $this->fours +
-            $this->fives +
-            $this->sixes;
+        return $this->getOnes() +
+            $this->getTwos() +
+            $this->getThrees() +
+            $this->getFours() +
+            $this->getFives() +
+            $this->getSixes();
     }
 
     public function getBonus(): int
@@ -65,124 +52,124 @@ class ScoreCard
     public function getTotalScore(): int
     {
         return $this->getSum() +
-            $this->bonus +
-            $this->onePair +
-            $this->twoPairs +
-            $this->threeNumbers +
-            $this->fourNumbers +
-            $this->smallLadder +
-            $this->bigLadder +
-            $this->house +
-            $this->chance +
-            $this->yatzy;
+            $this->score["bonus"] +
+            $this->score["onePair"] +
+            $this->score["twoPairs"] +
+            $this->score["threeNumbers"] +
+            $this->score["fourNumbers"] +
+            $this->score["smallLadder"] +
+            $this->score["bigLadder"] +
+            $this->score["house"] +
+            $this->score["chance"] +
+            $this->score["yatzy"];
     }
 
     private function calculateBonus()
     {
         if ($this->getSum() >= 63) {
-            $this->bonus = 50;
+            $this->score["bonus"] = 50;
         }
     }
 
     /**
-     * @param mixed $ones
+     * @param int $ones
      */
     public function setOnes(int $ones): void
     {
-        $this->ones = $ones;
+        $this->score["ones"] = $ones;
         $this->calculateBonus();
     }
 
     /**
-     * @param mixed $twos
+     * @param int $twos
      */
     public function setTwos(int $twos): void
     {
-        $this->twos = $twos;
+        $this->score["twos"] = $twos;
         $this->calculateBonus();
     }
 
     /**
-     * @param mixed $threes
+     * @param int $threes
      */
     public function setThrees(int $threes): void
     {
-        $this->threes = $threes;
+        $this->score["threes"] = $threes;
         $this->calculateBonus();
     }
 
     /**
-     * @param mixed $fours
+     * @param int $fours
      */
     public function setFours(int $fours): void
     {
-        $this->fours = $fours;
+        $this->score["fours"] = $fours;
         $this->calculateBonus();
     }
 
     /**
-     * @param mixed $fives
+     * @param int $fives
      */
     public function setFives(int $fives): void
     {
-        $this->fives = $fives;
+        $this->score["fives"] = $fives;
         $this->calculateBonus();
     }
 
     /**
-     * @param mixed $sixes
+     * @param int $sixes
      */
     public function setSixes(int $sixes): void
     {
-        $this->sixes = $sixes;
+        $this->score["sixes"] = $sixes;
         $this->calculateBonus();
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getOnes()
     {
-        return $this->ones;
+        return $this->score["ones"] ?? null;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getTwos()
     {
-        return $this->twos;
+        return $this->score["twos"] ?? null;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getThrees()
     {
-        return $this->threes;
+        return $this->score["threes"] ?? null;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getFours()
     {
-        return $this->fours;
+        return $this->score["fours"] ?? null;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getFives()
     {
-        return $this->fives;
+        return $this->score["fives"] ?? null;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getSixes()
     {
-        return $this->sixes;
+        return $this->score["sixes"] ?? null;
     }
 }

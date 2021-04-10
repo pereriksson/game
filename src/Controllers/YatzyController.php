@@ -9,17 +9,18 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use pereriksson\Util\Util;
 use pereriksson\Session\Session;
-
-const PLAYING = 0;
-const FINISHED = 1;
-const WON = 1;
-const LOST = 2;
+use pereriksson\Yatzy\Yatzy;
 
 /**
  * Controller for the index route.
  */
-class Yatzy
+class YatzyController
 {
+    const PLAYING = 0;
+    const FINISHED = 1;
+    const WON = 1;
+    const LOST = 2;
+
     private $util;
     private $session;
 
@@ -32,6 +33,8 @@ class Yatzy
     public function index(): ResponseInterface
     {
         $psr17Factory = new Psr17Factory();
+
+        $data = [];
 
         $data["component"] = "components/yatzy.twig";
 
@@ -97,7 +100,7 @@ class Yatzy
 
     private function start()
     {
-        $this->session->set("yatzy", new \pereriksson\Yatzy\Yatzy());
+        $this->session->set("yatzy", new Yatzy());
         $this->session->get("yatzy")->addPlayer("Jag");
         $this->session->get("yatzy")->addPlayer("Dator");
         $this->session->get("yatzy")->newRound();
@@ -137,21 +140,27 @@ class Yatzy
                 "factor" => 5,
                 "next" => "sixes",
                 "method" => "setFives"
+            ],
+            "sixes" => [
+                "factor" => 6,
+                "next" => "onePair",
+                "method" => "setSixes"
+            ],
+            "onePair" => [
+                "factor" => 6,
+                "next" => "twoPair",
+                "method" => "setOnePair"
             ]
         ];
 
         $step = $stepMapping[$this->session->get("row")];
 
-        $qty = array_reduce($yatzy->getDiceHand()->getDices(), function ($acc, $dice) use($step) {
+        $qty = array_reduce($yatzy->getDiceHand()->getDices(), function ($acc, $dice) use ($step) {
             return $dice->getValue() === $step["factor"] ? $acc + 1 : $acc;
         }, 0);
         call_user_func([$yatzy->getScoreCards()[0], $step["method"]], $step["factor"] * $qty);
 
         $this->session->set("row", $step["next"]);
-
-        if ($this->session->get("row") === "sixes") {
-            $this->session->remove("row");
-        }
     }
 
     private function throw()
@@ -174,8 +183,8 @@ class Yatzy
         // Lock dices
         foreach ($_POST as $key => $value) {
             if (substr($key, 0, 10) == "keep-dice-" && $value === "true") {
-                $id = substr($key, 10);
-                $yatzy->getDiceHand()->keepDice($id);
+                $uniqid = substr($key, 10);
+                $yatzy->getDiceHand()->keepDice($uniqid);
             }
         }
 
@@ -201,6 +210,7 @@ class Yatzy
 
             if ($this->isPostAction("reset")) {
                 $yatzy->resetScore();
+                $this->session->set("row", "ones");
             }
 
             if ($this->isPostAction("throw")) {
