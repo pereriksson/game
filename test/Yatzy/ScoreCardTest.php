@@ -17,21 +17,21 @@ class ScoreCardTest extends TestCase
     {
         $diceHand = new DiceHand(2, 6);
         $player = new Player($diceHand, "John");
-        $sc = new ScoreCard($player);
-        $this->assertEquals($player, $sc->getPlayer());
+        $scc = new ScoreCard($player);
+        $this->assertEquals($player, $scc->getPlayer());
     }
 
     public function testNumbers()
     {
         $diceHand = new DiceHand(2, 6);
         $player = new Player($diceHand, "John");
-        $sc = new ScoreCard($player);
-        $sc->setOnes(5);
-        $sc->setTwos(5);
-        $sc->setThrees(5);
-        $sc->setFours(5);
-        $sc->setFives(5);
-        $sc->setSixes(5);
-        $this->assertEquals(30, $sc->getSum());
+        $scc = new ScoreCard($player);
+        $scc->setOnes(5);
+        $scc->setTwos(5);
+        $scc->setThrees(5);
+        $scc->setFours(5);
+        $scc->setFives(5);
+        $scc->setSixes(5);
+        $this->assertEquals(30, $scc->getSum());
     }
 }

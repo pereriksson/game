@@ -13,11 +13,11 @@ class ScoreCardTest extends TestCase
 {
     public function testCreateScoreCard()
     {
-        $sc = new ScoreCard();
-        $sc->setScore(0, 10);
-        $this->assertEquals(10, $sc->getScore(0));
-        $this->assertEquals(0, $sc->getScore(1));
-        $sc->resetScore();
-        $this->assertEquals(0, $sc->getScore(0));
+        $scc = new ScoreCard();
+        $scc->setScore(0, 10);
+        $this->assertEquals(10, $scc->getScore(0));
+        $this->assertEquals(0, $scc->getScore(1));
+        $scc->resetScore();
+        $this->assertEquals(0, $scc->getScore(0));
     }
 }

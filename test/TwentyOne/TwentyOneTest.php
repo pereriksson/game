@@ -14,20 +14,20 @@ class TwentyOneTest extends TestCase
 {
     public function testCreateTwentyOne()
     {
-        $to = new TwentyOne(2, 6);
-        $to->addPlayer("John");
-        $to->addPlayer("Jane");
-        $to->newRound();
-        $this->assertEquals(2, count($to->getPlayers()));
+        $two = new TwentyOne(2, 6);
+        $two->addPlayer("John");
+        $two->addPlayer("Jane");
+        $two->newRound();
+        $this->assertEquals(2, count($two->getPlayers()));
     }
 
     public function testThrow()
     {
-        $to = new TwentyOne(2, 6);
-        $to->addPlayer("John");
-        $to->addPlayer("Jane");
-        $to->newRound();
-        $to->throwDices(0);
-        $this->assertGreaterThanOrEqual(1, $to->getScoreCard()->getScore(0));
+        $two = new TwentyOne(2, 6);
+        $two->addPlayer("John");
+        $two->addPlayer("Jane");
+        $two->newRound();
+        $two->throwDices(0);
+        $this->assertGreaterThanOrEqual(1, $two->getScoreCard()->getScore(0));
     }
 }
