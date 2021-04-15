@@ -82,16 +82,16 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
 
-        $vars[0] = new Util();
         $vars[1] = new PhpSession();
         $vars[2] = new PhpHttpClient();
+        $vars[0] = new Util($vars[2]);
 
         if (is_callable($handler)) {
             if (is_array($handler)
                 && is_string($handler[0])
                 && class_exists($handler[0])
             ) {
-                $obj = new $handler[0]($vars[0], $vars[1]);
+                $obj = new $handler[0]($vars[0], $vars[1], $vars[2]);
                 $action = $handler[1];
                 $response = $obj->$action();
             } else {
