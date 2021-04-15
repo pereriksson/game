@@ -3,8 +3,8 @@
 namespace pereriksson\Yatzy;
 
 use pereriksson\Dice\DiceHand;
-use pereriksson\TwentyOne\Player;
-use pereriksson\TwentyOne\Round;
+use pereriksson\Player\Player;
+use pereriksson\Round\Round;
 
 class Yatzy
 {

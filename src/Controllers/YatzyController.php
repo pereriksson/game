@@ -8,8 +8,9 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use pereriksson\Util\Util;
-use pereriksson\Session\Session;
 use pereriksson\Yatzy\Yatzy;
+use pereriksson\Session\SessionInterface;
+use pereriksson\Http\HttpInterface;
 
 /**
  * Controller for the index route.
@@ -23,11 +24,13 @@ class YatzyController
 
     private $util;
     private $session;
+    private $http;
 
-    public function __construct(Util $util, Session $session)
+    public function __construct(Util $util, SessionInterface $session, HTTPInterface $http)
     {
         $this->util = $util;
         $this->session = $session;
+        $this->http = $http;
     }
 
     public function index(): ResponseInterface
@@ -86,7 +89,7 @@ class YatzyController
 
     private function isPostAction(string $action): bool
     {
-        if (isset($_POST["action"]) && $_POST["action"] == $action) {
+        if (isset($this->http->getAllPost()["action"]) && $this->http->getAllPost()["action"] == $action) {
             return true;
         }
 

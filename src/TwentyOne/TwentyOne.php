@@ -3,6 +3,8 @@
 namespace pereriksson\TwentyOne;
 
 use pereriksson\Dice\DiceHand;
+use pereriksson\Player\Player;
+use pereriksson\Round\Round;
 
 class TwentyOne
 {
@@ -21,6 +23,14 @@ class TwentyOne
     {
         $this->diceHand = new DiceHand($numberOfDices, $numberOfFaces);
         $this->scoreCard = new ScoreCard();
+    }
+
+    /**
+     * @return ScoreCard
+     */
+    public function getScoreCard(): ScoreCard
+    {
+        return $this->scoreCard;
     }
 
     public function addPlayer($name)

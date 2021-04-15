@@ -2,6 +2,7 @@
 
 namespace pereriksson\Util;
 
+use pereriksson\Http\HttpInterface;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
@@ -9,6 +10,13 @@ use pereriksson\Filters\ScoreCardFilter;
 
 class Util
 {
+    private $http;
+
+    public function __construct(HttpInterface $http)
+    {
+        $this->http = $http;
+    }
+
     /**
      * Get the route path representing the page being requested.
      *
@@ -16,8 +24,8 @@ class Util
      */
     public function getRoutePath(): string
     {
-        $offset = strlen(dirname($_SERVER["SCRIPT_NAME"]));
-        $path = substr($_SERVER["REQUEST_URI"], $offset);
+        $offset = strlen(dirname($this->http->getAllServer()["SCRIPT_NAME"]));
+        $path = substr($this->http->getAllServer()["REQUEST_URI"], $offset);
 
         return $path;
     }
@@ -110,7 +118,7 @@ class Util
             return $baseUrl;
         }
 
-        $scriptName = rawurldecode($_SERVER["SCRIPT_NAME"]);
+        $scriptName = rawurldecode($this->http->getAllServer()["SCRIPT_NAME"]);
         $path = rtrim(dirname($scriptName), "/");
 
         // Prepare to create baseUrl by using currentUrl
@@ -134,50 +142,22 @@ class Util
      */
     public function getCurrentUrl(): string
     {
-        // Silenced by Per as key doesn't exist
-        //$scheme = $_SERVER["REQUEST_SCHEME"];
-        $scheme = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === 0 ? 'https' : 'http';
-        $server = $_SERVER["SERVER_NAME"];
+        $scheme = stripos($this->http->getAllServer()['SERVER_PROTOCOL'], 'https') === 0 ? 'https' : 'http';
+        $server = $this->http->getAllServer()["SERVER_NAME"];
 
-        $port = $_SERVER["SERVER_PORT"];
+        $port = $this->http->getAllServer()["SERVER_PORT"];
         $port = ($port === "80")
             ? ""
-            : (($port === 443 && $_SERVER["HTTPS"] === "on")
+            : (($port === 443 && $this->http->getAllServer()["HTTPS"] === "on")
                 ? ""
                 : ":" . $port);
 
-        $uri = rtrim(rawurldecode($_SERVER["REQUEST_URI"]), "/");
+        $uri = rtrim(rawurldecode($this->http->getAllServer()["REQUEST_URI"]), "/");
 
         $url = htmlspecialchars($scheme) . "://";
         $url .= htmlspecialchars($server)
             . $port . htmlspecialchars(rawurldecode($uri));
 
         return $url;
-    }
-
-
-    /**
-     * Destroy the session.
-     *
-     * @return void
-     */
-    public function destroySession(): void
-    {
-        $_SESSION = [];
-
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(
-                session_name(),
-                '',
-                time() - 42000,
-                $params["path"],
-                $params["domain"],
-                $params["secure"],
-                $params["httponly"]
-            );
-        }
-
-        session_destroy();
     }
 }

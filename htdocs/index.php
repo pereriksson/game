@@ -10,7 +10,8 @@ use Laminas\HttpHandlerRunner\Emitter\SapiEmitter as Emitter;
 use pereriksson\Controllers\ErrorController;
 use pereriksson\Util\Util;
 use FastRoute\RouteCollector;
-use pereriksson\Session\Session;
+use pereriksson\Session\PhpSession;
+use pereriksson\Http\PhpHttpClient;
 
 /**
  * Bootstrapping
@@ -26,9 +27,10 @@ require INSTALL_PATH . "/vendor/autoload.php";
 error_reporting(-1);                // Report all type of errors
 ini_set("display_errors", "1");     // Display all errors
 
-$session = new Session();
+$session = new PhpSession();
 $session->startUniqueSession();
 
+$http = new PhpHttpClient();
 
 
 /**
@@ -36,8 +38,8 @@ $session->startUniqueSession();
  *
  * Extract the path and route it to its handler.
  */
-$method = $_SERVER["REQUEST_METHOD"];
-$util = new Util();
+$method = $http->getAllServer()["REQUEST_METHOD"];
+$util = new Util($http);
 $path   = $util->getRoutePath();
 
 // Load the routes from the configuration file
@@ -81,7 +83,8 @@ switch ($routeInfo[0]) {
         $vars = $routeInfo[2];
 
         $vars[0] = new Util();
-        $vars[1] = new Session();
+        $vars[1] = new PhpSession();
+        $vars[2] = new PhpHttpClient();
 
         if (is_callable($handler)) {
             if (is_array($handler)

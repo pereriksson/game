@@ -1,6 +1,8 @@
 <?php
 
-namespace pereriksson\TwentyOne;
+namespace pereriksson\Round;
+
+use pereriksson\Player\Player;
 
 class Round
 {

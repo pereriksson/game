@@ -2,7 +2,7 @@
 
 namespace pereriksson\Session;
 
-class Session
+class PhpSession implements SessionInterface
 {
     public function startUniqueSession()
     {
@@ -14,6 +14,11 @@ class Session
         session_name($sessionName);
         session_start();
         return true;
+    }
+
+    public function getSession()
+    {
+        return $_SESSION;
     }
 
     public function getSessionName()
@@ -65,5 +70,10 @@ class Session
         }
 
         session_destroy();
+    }
+
+    public function getSessionStatus()
+    {
+        return session_status();
     }
 }

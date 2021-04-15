@@ -1,6 +1,6 @@
 <?php
 
-namespace pereriksson\TwentyOne;
+namespace pereriksson\Player;
 
 use pereriksson\Dice\DiceHand;
 

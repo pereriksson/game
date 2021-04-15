@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace pereriksson\Controllers;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
+use pereriksson\Http\HttpInterface;
+use pereriksson\Session\SessionInterface;
 use pereriksson\Util\Util;
 use Psr\Http\Message\ResponseInterface;
-use pereriksson\Session\Session;
+use pereriksson\Session\PhpSession;
 
 /**
  * Controller for error routes.
@@ -16,11 +18,13 @@ class ErrorController
 {
     private $util;
     private $session;
+    private $http;
 
-    public function __construct(Util $util, Session $session)
+    public function __construct(Util $util, SessionInterface $session, HTTPInterface $http)
     {
         $this->util = $util;
         $this->session = $session;
+        $this->http = $http;
     }
 
     public function do404(): ResponseInterface

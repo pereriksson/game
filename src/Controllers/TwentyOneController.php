@@ -6,10 +6,12 @@ namespace pereriksson\Controllers;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use pereriksson\Http\HttpInterface;
 use Psr\Http\Message\ResponseInterface;
 use pereriksson\Util\Util;
-use pereriksson\Session\Session;
+use pereriksson\Session\PhpSession;
 use pereriksson\TwentyOne\TwentyOne;
+use pereriksson\Session\SessionInterface;
 
 const PLAYING = 0;
 const FINISHED = 1;
@@ -23,11 +25,13 @@ class TwentyOneController
 {
     private $util;
     private $session;
+    private $http;
 
-    public function __construct(Util $util, Session $session)
+    public function __construct(Util $util, SessionInterface $session, HTTPInterface $http)
     {
         $this->util = $util;
         $this->session = $session;
+        $this->http = $http;
     }
 
     private function simulateComputer($twentyone)
@@ -55,12 +59,12 @@ class TwentyOneController
 
         $data = [];
 
-        if (isset($_SESSION["twentyone"])) {
-            $twentyone = $_SESSION["twentyone"];
+        if ($this->session->keyExist("twentyone")) {
+            $twentyone = $this->session->get("twentyone");
 
             $data = [
                 "title" => "Tjugoett",
-                "twentyone" => $_SESSION["twentyone"],
+                "twentyone" => $this->session->get("twentyone"),
                 "my_score" => $twentyone->getPlayerScore(0),
                 "computer_score" => $twentyone->getPlayerScore(1),
                 "status" => $twentyone->getStatus() === PLAYING ? "playing" : "finished",
@@ -107,7 +111,7 @@ class TwentyOneController
 
     private function isPostAction(string $action): bool
     {
-        if (isset($_POST["action"]) && $_POST["action"] == $action) {
+        if (isset($this->http->getAllPost()["action"]) && $this->http->getAllPost()["action"] == $action) {
             return true;
         }
 
@@ -121,7 +125,7 @@ class TwentyOneController
         }
 
         if ($this->isPostAction("start")) {
-            $this->session->set("twentyone", new TwentyOne($_POST["number_of_dices"], 6));
+            $this->session->set("twentyone", new TwentyOne($this->http->getAllPost()["number_of_dices"], 6));
             $this->session->get("twentyone")->addPlayer("Jag");
             $this->session->get("twentyone")->addPlayer("Dator");
             $this->session->get("twentyone")->newRound();

@@ -6,8 +6,10 @@ namespace pereriksson\Controllers;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use pereriksson\Http\HttpInterface;
 use Psr\Http\Message\ResponseInterface;
 use pereriksson\Util\Util;
+use pereriksson\Session\SessionInterface;
 
 /**
  * Controller for the session routes.
@@ -16,11 +18,13 @@ class SessionController
 {
     private $util;
     private $session;
+    private $http;
 
-    public function __construct(Util $util, \pereriksson\Session\Session $session)
+    public function __construct(Util $util, SessionInterface $session, HTTPInterface $http)
     {
         $this->util = $util;
         $this->session = $session;
+        $this->http = $http;
     }
 
     public function index(): ResponseInterface
@@ -29,7 +33,7 @@ class SessionController
 
         $data = [
             "title" => "Session",
-            "session" => $_SESSION,
+            "session" => $this->session->getSession(),
             "component" => "components/session.twig"
         ];
 
@@ -62,7 +66,7 @@ class SessionController
 
     public function destroy(): ResponseInterface
     {
-        $this->util->destroySession();
+        $this->session->destroy();
 
         return (new Response())
             ->withStatus(301)
